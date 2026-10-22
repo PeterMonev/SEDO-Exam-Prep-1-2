@@ -1,0 +1,34 @@
+
+name: SoftUniBazar CI
+
+on:
+  push:
+    branches:
+      - develop
+      - 'feature/**'
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+
+      - name: Setup .NET 6
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore SoftUniBazar.sln
+
+      - name: Build Solution
+        run: dotnet build SoftUniBazar.sln --configuration Release --no-restore
+
+      - name: Run Unit and Integration Tests
+        run: dotnet test SoftUniBazar.sln --configuration Release --no-build --verbosity normal

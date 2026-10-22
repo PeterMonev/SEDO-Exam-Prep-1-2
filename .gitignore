@@ -1,0 +1,24 @@
+
+# .NET build output
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Rider
+.idea/
+
+# Test output
+**/TestResults/
+*.trx
+
+# Temporary files
+*.tmp
+*.log
+
+# Local configuration
+.env
+.env.*
